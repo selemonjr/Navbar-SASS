@@ -1,0 +1,107 @@
+@import "./reset";
+@import "./variables";
+@function weight($weight-name) {
+    @return map-get($font-weights,$weight-name)
+};
+@mixin display{
+    display: flex;
+}
+
+@mixin mobile{
+    @media(max-width:$mobile){
+        @content;
+    }
+}
+#home {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    
+    @include mobile {
+        overflow: hidden;
+    }
+}
+
+.bars {
+    display: none;
+}
+nav {
+    @include display;
+    padding: 1% 1%;
+}
+.navlinks {
+    text-align: right;
+    flex: 1;
+    ul {
+        display: inline-flex;
+        list-style: none;
+        margin: 10px;
+    }
+
+    ul li {
+        padding: 15px;
+    }
+    li a {
+        text-decoration: none;
+        font-weight: weight(bold);
+        font-size: 20px;
+        color: $black;
+
+        &:hover {
+            color: $gray;
+        }
+    }
+    .close {
+        display: none;
+    }
+    @include mobile {
+        background: $gray;
+        position: absolute;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        z-index: 2;
+        text-align: left;
+        transition: 1s;
+        overflow: hidden;
+        ul{
+            display: block;
+            margin-top: 20%;
+        }
+
+        ul li {
+            display: block;
+            padding-left: 2px;
+        }
+        .close {
+            font-size: 40px;
+            display: block;
+            position: absolute;
+            right: 0;
+            padding: 5px;
+        }
+    }
+}
+@include mobile {
+    .bars {
+        font-size: 35px;
+        text-align: right;
+        margin: 10px;
+        display: block;
+        overflow: hidden;
+        
+    }
+}
+
+.container {
+    margin-top: 10%;
+    text-align: center;
+}
+
+@include mobile {
+    .container {
+        margin-top: 30%;
+    }
+}
+
